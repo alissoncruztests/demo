@@ -1,0 +1,19 @@
+version: "3"
+services:
+  demo-database:
+    image: mongo:latest
+    container_name: demo-database
+    ports:
+      - 27017:27017
+  api-demo-exemple:
+#    build:
+#      context: ./
+#      dockerfile: ./Dockerfile
+    image: demo
+    ports:
+      - 8080:8080
+      - 5005:5005
+    environment:
+      - PROFILE=dev
+    links:
+      - demo-database
